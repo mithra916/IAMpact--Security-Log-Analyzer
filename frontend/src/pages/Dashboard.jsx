@@ -5,17 +5,18 @@ import {
 } from "recharts";
 
 const COLORS = {
-  bg: "#0d1117",
-  panel: "#161b22",
-  border: "#21262d",
-  text: "#e6edf3",
-  muted: "#7d8590",
-  accent: "#58a6ff",
-  green: "#3fb950",
-  red: "#f85149",
-  yellow: "#d29922",
-  orange: "#ffa657",
-  purple: "#bc8cff",
+  bg: "#ffffff",          // Full page white
+  panel: "#f8fafc",       // Light gray cards
+  border: "#d1d5db",      // Light border
+  text: "#111827",        // Dark text
+  muted: "#6b7280",       // Secondary text
+
+  accent: "#2563eb",      // Blue
+  green: "#16a34a",
+  red: "#dc2626",
+  yellow: "#ca8a04",
+  orange: "#ea580c",
+  purple: "#7c3aed",
 };
 
 function Header() {
@@ -128,7 +129,7 @@ export default function Dashboard() {
     try {
       setLoading(true);
 
-      const response = await fetch("https://iampact-security-log-analyzer-s6sc.onrender.com/api/analyze-logs", {
+      const response = await fetch("/api/analyze-logs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -192,7 +193,7 @@ export default function Dashboard() {
           <StatCard
             title="Total Logs"
             value={analysis?.total_logs || 0}
-            subtitle="Parsed CloudTrail events"
+            subtitle="Parsed logs"
             color={COLORS.accent}
           />
 
@@ -237,7 +238,8 @@ export default function Dashboard() {
               <div>
                 <h2>IAM Log Analyzer</h2>
                 <p style={{ color: COLORS.muted, fontSize: 12 }}>
-                  Paste AWS CloudTrail JSON logs and detect risky IAM activity.
+                  Paste the logs to detect the risk
+        
                 </p>
               </div>
 
@@ -257,7 +259,7 @@ export default function Dashboard() {
             <textarea
               value={logs}
               onChange={(e) => setLogs(e.target.value)}
-              placeholder="Paste CloudTrail JSON array here..."
+              placeholder="Paste logs here..."
               style={{
                 width: "100%",
                 height: 270,
@@ -438,7 +440,7 @@ export default function Dashboard() {
 
           {alerts.length === 0 && (
             <p style={{ color: COLORS.muted }}>
-              No alerts detected. Paste CloudTrail logs and click Analyze Logs.
+              No alerts detected. Paste logs and click Analyze Logs.
             </p>
           )}
 
