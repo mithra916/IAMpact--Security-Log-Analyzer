@@ -1,4 +1,4 @@
-# IAMpact — AI-Powered IAM Log Analyzer
+# IAMpact — Security Log Analyzer
 
 IAMpact is a lightweight AI-powered IAM security analysis dashboard that helps security teams analyze AWS CloudTrail IAM logs, detect suspicious identity activity, prioritize alerts, and generate remediation recommendations.
 
