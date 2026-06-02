@@ -128,7 +128,7 @@ export default function Dashboard() {
     try {
       setLoading(true);
 
-      const response = await fetch("http://127.0.0.1:8000/api/analyze-logs", {
+      const response = await fetch("https://iampact-security-log-analyzer-s6sc.onrender.com/api/analyze-logs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
