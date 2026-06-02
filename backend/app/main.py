@@ -5,7 +5,8 @@ from app.core.database import Base, engine
 from app.api.routes import upload, alerts
 from app.websocket.live_alerts import router as ws_router
 from app.api.routes.analyze import router as analyze_router
-
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 app = FastAPI(title="IAMpact")
 
@@ -26,3 +27,9 @@ app.include_router(upload.router)
 app.include_router(alerts.router)
 app.include_router(ws_router)
 app.include_router(analyze_router)
+
+app.mount("/assets", StaticFiles(directory="app/static/assets"), name="assets")
+
+@app.get("/")
+def serve_frontend():
+    return FileResponse("app/static/index.html")
